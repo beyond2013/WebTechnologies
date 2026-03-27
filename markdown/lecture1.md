@@ -1,8 +1,11 @@
-Using **WSL2 (Windows Subsystem for Linux)** is the perfect "middle ground." It allows your students to stay on Windows while running a **real Ubuntu kernel** in the background. This is exactly how most professional developers at companies like Microsoft and Netflix work today.
+🛠️ Instructor’s Note on AI & Ethics
 
-Here is the revised **Lecture 1** for **Web Technologies**, specifically updated to guide Windows-based students through the WSL2 setup while keeping the focus on the professional Rails/Git stack.
+**Content Origin:** This lecture material was drafted with the assistance of Google AI Studio and has been carefully reviewed and edited by the instructor to ensure technical accuracy and alignment with our course goals (Ubuntu, WSL2, and Ruby on Rails).
 
-***
+**A Word of Caution:** In the field of Web Engineering, AI is a powerful tool for productivity, but it is not a substitute for foundational knowledge.
+
+**Ethics & Accountability:** As future engineers, you are encouraged to use AI to clarify concepts or debug code. However, you are solely responsible for the code and documentation you submit. Verbatim copying of AI-generated material without understanding the underlying logic is a breach of academic integrity and prevents the development of the critical thinking skills required to manage complex web systems. Always verify, never just copy.
+
 
 # Lecture 1: The Architecture of the Modern Web & Your Professional Environment
 
@@ -96,12 +99,6 @@ All lecture notes and assignments will be hosted on GitHub. Let's get your Linux
 *   **TCP/IP** is the delivery system.
 *   **Git** is how we will manage our code and notes this semester.
 
----
-**Next Lecture:** *HTML5 Structure & The Rails View Layer.*
 
 ***
 
-### 💡 Time-Saving Tip for You (The Instructor):
-Since your students are on Windows, they will likely face "Path" issues (e.g., trying to find their Linux files in Windows Explorer). 
-*   Tell them to type `explorer.exe .` (with the dot) in their Ubuntu terminal. This opens a Windows folder window directly into their Linux files.
-*   This one tip will save you 50% of your troubleshooting emails!
