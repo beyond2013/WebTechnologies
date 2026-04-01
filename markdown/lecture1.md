@@ -1,104 +1,178 @@
-🛠️ Instructor’s Note on AI & Ethics
+# 🛠️ Instructor’s Note on AI & Ethics
 
-**Content Origin:** This lecture material was drafted with the assistance of Google AI Studio and has been carefully reviewed and edited by the instructor to ensure technical accuracy and alignment with our course goals (Ubuntu, WSL2, and Ruby on Rails).
+**Content Origin:** This lecture material was drafted with the assistance of Google AI Studio and has been carefully reviewed and edited by the instructor to ensure technical accuracy and alignment with course goals.
 
-**A Word of Caution:** In the field of Web Engineering, AI is a powerful tool for productivity, but it is not a substitute for foundational knowledge.
+**A Word of Caution:** In the field of Web Technologies, AI is a powerful productivity tool—but it is not a substitute for foundational knowledge.
 
-**Ethics & Accountability:** As future engineers, you are encouraged to use AI to clarify concepts or debug code. However, you are solely responsible for the code and documentation you submit. Verbatim copying of AI-generated material without understanding the underlying logic is a breach of academic integrity and prevents the development of the critical thinking skills required to manage complex web systems. Always verify, never just copy.
+**Ethics & Accountability:**
+You are encouraged to use AI to:
+- Clarify concepts
+- Debug code
 
+However, you are **fully responsible** for anything you submit. Copying AI-generated material without understanding it is a violation of academic integrity and prevents the development of critical thinking skills required for real-world systems.
+
+> ✅ Always verify — never just copy.
+
+---
 
 # Lecture 1: The Architecture of the Modern Web & Your Professional Environment
 
-## 1. Introduction: From "User" to "Developer"
-Most of you are used to the Web as **users**—browsing sites on Windows, Mac, or Android. In this course, we shift to being **builders**. 
+---
 
-To build modern web applications, we need an environment that matches the servers that run the internet. Since over **90% of the world's web servers run Linux**, we will be using **Ubuntu**—but we will do it right inside Windows using **WSL2**.
+## 1. From User to Developer
+
+Most of you interact with the web as users—browsing websites on devices like Windows PCs, Android phones, or tablets.
+
+In this course, we shift perspective:
+
+> From consuming the web → to understanding and building it
+
+To do this effectively, we must understand:
+- How the web works internally
+- The environment in which web applications are developed
 
 ---
 
-## 2. Our Development Stack
-To save time and avoid "it works on my machine" bugs, we will use:
-*   **Host OS:** Windows 10/11.
-*   **Development OS:** `WSL2 (Ubuntu 22.04 LTS)`.
-*   **Version Control:** `Git` (Running inside Ubuntu).
-*   **The Bridge:** `VS Code` with the **WSL Extension**.
-*   **The Engine:** `Ruby on Rails`.
+## 2. Our Development Environment
+
+To ensure consistency and avoid “it works on my machine” issues, we will use:
+
+- **Host OS:** Windows 10/11
+- **Development Environment:** WSL2 (Ubuntu Linux)
+- **Code Editor:** VS Code (with WSL Extension)
+- **Version Control:** Git
+- **Application Framework (example):** Ruby on Rails
+
+> Note: Rails is used as a learning tool. The concepts you learn will apply to other technologies as well.
+
+---
 
 ### Why WSL2?
-Native Ruby on Rails development on Windows is difficult and prone to errors. **WSL2** gives you a high-performance Linux environment that lets you run professional tools (like Redis, PostgreSQL, and Rails) exactly as they would run on a production server.
+
+- Over 90% of web servers run on Linux
+- Native web development on Windows can cause compatibility issues
+- WSL2 provides:
+- Real Linux environment inside Windows
+- Better compatibility with modern tools
+- Industry-relevant workflow
 
 ---
 
-## 3. Core Concept: The Request-Response Cycle
-No matter what OS you use, the web speaks one language: **HTTP (HyperText Transfer Protocol)**.
+## 3. Core Concept: The Request–Response Cycle
 
-### The Client (Your Browser)
-The browser's job is to send a **Request**. 
-*Example:* "Hey Server at `google.com`, please give me your search page."
+The web operates on a simple model:
 
-### The Server (Your Rails App)
-The server's job is to send a **Response**. 
-*Example:* "Here is the HTML code for the search page. (Status: 200 OK)"
+### Client (Browser)
+- Sends an HTTP request
+- Example:
 
-### The "Plumbing" (TCP/IP)
-*   **IP Address:** Every computer on the web has a unique address (e.g., `142.250.190.46`).
-*   **TCP:** This ensures that your website data doesn't get "corrupted" or lost while traveling through the wires. It breaks data into packets and puts them back together at the destination.
+GET / HTTP/1.1
+Host: google.com
+
+### Server
+- Processes request and sends response
+- Example:
+
+HTTP/1.1 200 OK
+Content-Type: text/html
 
 ---
 
-## 4. Setup Lab: Building Your Professional Bridge
-Since this is our first lecture, your goal is to bridge the gap between Windows and Ubuntu.
+### Conceptual Flow
 
-### Step 1: Enable WSL2
-Open **PowerShell** as Administrator and run:
-```powershell
+Browser → HTTP Request → Server
+Browser ← HTTP Response ← Server
+(via TCP/IP)
+
+---
+
+## 4. The Underlying Network (TCP/IP)
+
+- **IP Address:**
+A unique identifier for devices on the network
+Example: 142.250.190.46
+
+- **TCP (Transmission Control Protocol):**
+- Reliable delivery
+- Ordered data transfer
+- Error checking
+
+> HTTP operates on top of TCP
+
+---
+
+## 5. Lab 1: Setting Up Your Development Environment
+
+### Step 1: Install WSL2
+
+Open PowerShell as Administrator and run:
+
 wsl --install
-```
-*Restart your computer after this finishes.*
 
-### Step 2: Set up Ubuntu
-1.  Search for **Ubuntu** in your Windows Start menu and open it.
-2.  Follow the prompts to create a **username** and **password**. (Keep this password safe!)
-3.  Update your Linux packages:
-    ```bash
-    sudo apt update && sudo apt upgrade -y
-    ```
-
-### Step 3: Install the "Bridge" (VS Code)
-1.  Install **VS Code** on your Windows side.
-2.  Open VS Code, go to **Extensions** (Ctrl+Shift+X), and search for **"WSL"**. Install it.
-3.  In your Ubuntu terminal, type:
-    ```bash
-    code .
-    ```
-    *Magic:* This will open VS Code in Windows, but it is actually editing files inside your Ubuntu Linux system!
+Restart your system after installation.
 
 ---
 
-## 5. First Git Task
-All lecture notes and assignments will be hosted on GitHub. Let's get your Linux environment connected.
+### Step 2: Setup Ubuntu
 
-1.  **Configure Git in Ubuntu:**
-    ```bash
-    git config --global user.name "Your Name"
-    git config --global user.email "your_email@example.com"
-    ```
-2.  **Clone the Course Repo:**
-    ```bash
-    git clone https://github.com/[your-username]/web-tech-notes.git
-    cd web-tech-notes
-    ```
-3.  **Verify Environment:**
-    Run `ruby -v` and `git --version` inside your Ubuntu terminal and take a screenshot.
+- Open Ubuntu from Start Menu
+- Create username and password
+- Update system:
+
+sudo apt update && sudo apt upgrade -y
 
 ---
 
-## 6. Summary
-*   We are using **WSL2** to get the power of Linux on Windows.
-*   **HTTP** is the request/response language of the web.
-*   **TCP/IP** is the delivery system.
-*   **Git** is how we will manage our code and notes this semester.
+### Step 3: Install VS Code + WSL Extension
 
+- Install VS Code (Windows side)
+- Install WSL Extension
 
-***
+From Ubuntu terminal:
 
+code .
+
+This opens VS Code connected to your Linux environment.
+
+---
+
+## 6. Version Control Setup (Git)
+
+Configure Git:
+
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+
+Clone course repository:
+
+git clone https://github.com/[your-username]/web-tech-notes.git
+cd web-tech-notes
+
+---
+
+## 7. Verification Task
+
+Run:
+
+ruby -v
+git --version
+
+Task: Take a screenshot and submit as proof of setup.
+
+---
+
+## 8. Summary
+
+- The web works on a request–response model
+- HTTP is the communication protocol
+- TCP/IP ensures reliable data transfer
+- WSL2 provides a production-like Linux environment
+- Git will be used for managing course work
+
+---
+
+## 9. Thought Question
+
+What problems might arise if the web used UDP instead of TCP for communication?
+
+---
