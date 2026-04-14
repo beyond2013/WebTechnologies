@@ -60,7 +60,7 @@ Example:
 3. Query sent to **DNS resolver (ISP)**  
 4. Resolver contacts:
    - Root server  
-   - TLD server (.com)  
+   - TLD(Top Level Domain) server (.com)  
    - Authoritative server  
 5. IP address is returned  
 
