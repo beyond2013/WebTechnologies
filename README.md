@@ -2,21 +2,21 @@
 
 ## Weekly Breakdown 
 
-🔹 [Week 1: Introduction to Web Applications]((markdown/lecture1.md)) 
+🔹 [Week 1: Introduction to Web Applications](markdown/lecture1.md)
 - What is a Web Application?
 - Evolution of Web (Web 1.0 → Web 3.0)
 - Client–Server Model
 - Static vs Dynamic Websites
 - Overview of Web Stack
 
-🔹 [Week 2: Internet Fundamentals & TCP/IP Application Services]((markdown/lecture2.md)
+🔹 [Week 2: Internet Fundamentals & TCP/IP Application Services](markdown/lecture2.md)
 - TCP/IP layers (focus on Application Layer)
 - DNS, HTTP, HTTPS, FTP, SMTP (overview)
 - How a web request travels
 - Ports and protocols
 💡 Lab: Use browser dev tools → inspect request/response
 
-🔹 Week 3: Web Servers — Basics
+🔹 [Week 3: Web Servers — Basics](markdown/lecture3.md)
 - What is a web server?
 - Request–Response lifecycle
 - Apache / Nginx basics
