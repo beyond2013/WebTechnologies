@@ -9,7 +9,7 @@
 - Static vs Dynamic Websites
 - Overview of Web Stack
 
-🔹 [Week 2: Internet Fundamentals & TCP/IP Application Services]((markdown/lecture2.md)
+🔹 [Week 2: Internet Fundamentals & TCP/IP Application Services](markdown/lecture2.md)
 - TCP/IP layers (focus on Application Layer)
 - DNS, HTTP, HTTPS, FTP, SMTP (overview)
 - How a web request travels
