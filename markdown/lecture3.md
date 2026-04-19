@@ -89,6 +89,15 @@ Dynamic content is *generated in real-time* and can change based on user input, 
 ---
 
 ### Conceptual Difference
+## Static
+ 1. Client sends a request to the server
+ 2. The server simply looks for a static file
+ 3. and sends the response back
+
+## Dynamic
+ 1. Client sends a request
+ 2. Server runs application code that may query a database
+ 3. A response is generated and sent back
 
     Client → Request → Server  
             → Static File → Response  
