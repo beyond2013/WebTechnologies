@@ -23,12 +23,18 @@ A **web server** is software (and hardware) that:
 
 ---
 
-### Examples of Web Servers
+### Examples of Servers in Web Architecture
+1. General-Purpose Web Servers: handle HTTP requests, server static contents, and often act as a gateway to backend applicatoins
 
-- Apache  
-- Nginx  
-- Microsoft IIS  
-- Puma (used by Ruby on Rails)  
+- [Apache](https://httpd.apache.org/) most widely used open source web server, known for flexibility & modular architecture.
+- [Nginx](https://nginx.org) high performance, event driven web server widely used for handling  high traffic loads
+- [Microsoft IIS]() designed for Windows environments and ASP.NET applications.
+
+2. Application Servers: run application code and generate dynamic content.
+
+- [Puma](https://github.com/puma/puma) fast, concurrent web server tightly coupled with Ruby applications 
+- [Cunicorn](https://gunicorn.org/) used with Django/ Flask
+- [Tomcat](https://tomcat.apache.org/) runs Java servlets and JSP
 
 ---
 
@@ -42,25 +48,43 @@ A **web server** is software (and hardware) that:
 
 ### Static Content
 
-- Pre-built files  
-- Same response for every user  
+Static content refers to *web pages that remain the same for every user* and do not change unless manually updated.
 
-Examples:
-- HTML files  
-- CSS  
-- Images  
+* **Fixed Content**
+  The *content is pre-written* and stored as-is, so every user sees exactly the same information.
+
+* **Simple to Develop**
+  Created using *basic HTML/CSS without requiring server-side programming* or databases.
+
+* **Fast Loading**
+  Since no processing is required, *static pages are delivered quickly* to the browser.
+
+* **Low Server Load**
+  The server simply serves files without executing logic, making it resource-efficient.
+
+* **Limited Interactivity**
+  User interaction is minimal because content does not adapt based on user input.
 
 ---
 
 ### Dynamic Content
 
-- Generated at runtime  
-- Response depends on user/request  
+Dynamic content is *generated in real-time* and can change based on user input, preferences, or other conditions.
 
-Examples:
-- Login systems  
-- Dashboards  
-- Search results  
+* **Generated on the Fly**
+  Content is created at request time using server-side scripts or client-side JavaScript.
+
+* **Personalized Experience**
+  Different users may see different content based on their profile, location, or behavior.
+
+* **Requires Backend Processing**
+  Often involves server-side languages (e.g., PHP, Node.js, Python) and databases.
+
+* **Interactive and Responsive**
+  Allows user-driven actions such as form submissions, searches, and real-time updates.
+
+* **Higher Resource Usage**
+  Processing requests dynamically increases server load and may impact performance.
 
 ---
 
