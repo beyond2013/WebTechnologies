@@ -28,7 +28,7 @@ Virtual hosting allows one physical server to host multiple websites (domains).
 2.  **IP-Based:** Each website has a unique IP address.
 
 ### Visual Guide: Virtual Hosting
-http://googleusercontent.com/generated_image_content/0
+
 
 ---
 
@@ -43,7 +43,7 @@ Data is sent in smaller "chunks" instead of one massive block.
 Like a multi-course meal: You receive the soup first, then the main, then dessert. You don't wait for the whole kitchen to finish before you start eating.
 
 ### Visual Guide: Chunked Transfer
-http://googleusercontent.com/generated_image_content/1
+![](../figures/1777190149882.png)
 
 ---
 
@@ -64,7 +64,7 @@ Caching stores copies of data so future requests can be served significantly fas
 * **Revalidation:** Checking if the cached version is still the latest.
 
 ### Visual Guide: Caching Strategies
-http://googleusercontent.com/generated_image_content/2
+[](../figures/)
 
 ---
 
@@ -77,7 +77,7 @@ Web servers can be extended with additional features without changing the core s
 * **Language Support:** PHP, Python, or Ruby integration.
 
 ### Visual Guide: Server Extensibility
-http://googleusercontent.com/generated_image_content/3
+[](../figures/)
 
 ---
 
