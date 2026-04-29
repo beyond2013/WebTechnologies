@@ -23,7 +23,7 @@
 - Static file serving
 💡 Lab: Install local server (XAMPP / WAMP / Node)
 
-🔹 Week 4: Web Server Advanced Concepts
+🔹 [Week 4: Web Server Advanced Concepts](markdown/lecture4.md)
 - Virtual Hosting
 - Chunked Transfer Encoding
 - Caching (browser + server)
