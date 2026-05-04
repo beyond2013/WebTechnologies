@@ -1,3 +1,19 @@
+# 🛠️ Instructor’s Note on AI & Ethics
+
+**Content Origin:** This lecture material was drafted with the assistance of Google AI Studio and has been carefully reviewed and edited by the instructor to ensure technical accuracy and alignment with course goals.
+
+**A Word of Caution:** In the field of Web Technologies, AI is a powerful productivity tool—but it is not a substitute for foundational knowledge.
+
+**Ethics & Accountability:**
+You are encouraged to use AI to:
+- Clarify concepts
+- Debug code
+
+However, you are **fully responsible** for anything you submit. Copying AI-generated material without understanding it is a violation of academic integrity and prevents the development of critical thinking skills required for real-world systems.
+
+> ✅ Always verify — never just copy.
+
+---
 # Lecture 2: How the Web Works Internally — DNS & HTTP Deep Dive
 
 ---

@@ -13,26 +13,26 @@
 - TCP/IP layers (focus on Application Layer)
 - DNS, HTTP, HTTPS, FTP, SMTP (overview)
 - How a web request travels
-- Ports and protocols
+- Ports and protocols  
 💡 Lab: Use browser dev tools → inspect request/response
 
 🔹 [Week 3: Web Servers — Basics](markdown/lecture3.md)
 - What is a web server?
 - Request–Response lifecycle
 - Apache / Nginx basics
-- Static file serving
+- Static file serving  
 💡 Lab: Install local server (XAMPP / WAMP / Node)
 
 🔹 [Week 4: Web Server Advanced Concepts](markdown/lecture4.md)
 - Virtual Hosting
 - Chunked Transfer Encoding
 - Caching (browser + server)
-- Extensibility (modules/plugins)
+- Extensibility (modules/plugins)  
 
-🔹 Week 5: Markup Foundations
+🔹 [Week 5: Markup Foundations](markdown/lecture5.md)
 - SGML (conceptual)
 - HTML5 structure
-- Tags, attributes, semantic elements
+- Tags, attributes, semantic elements  
 💡 Lab: Create structured HTML page
 
 🔹 Week 6: Advanced HTML5
