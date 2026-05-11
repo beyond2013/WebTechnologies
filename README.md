@@ -35,10 +35,10 @@
 - Tags, attributes, semantic elements  
 💡 Lab: Create structured HTML page
 
-🔹 Week 6: Advanced HTML5
+🔹 [Week 6: Advanced HTML5](markdown/lecture6.md)
 - Forms, input types
 - Media (audio/video)
-- Semantic + accessibility basics
+- Semantic + accessibility basics  
 💡 Lab: Build a multi-section webpage
 
 🔹 Week 7: CSS3 Fundamentals
