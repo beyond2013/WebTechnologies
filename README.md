@@ -41,16 +41,17 @@
 - Semantic + accessibility basics  
 💡 Lab: Build a multi-section webpage
 
-🔹 Week 7: CSS3 Fundamentals
+🔹 Week 7: CSS3 Fundamentals (covered in web engineering week 5)
 - Selectors, box model
-- Colors, fonts, layout basics
+- Colors, fonts, layout basics  
 💡 Lab: Style previous HTML page
 
-🔹 Week 8: CSS3 Advanced
-- Flexbox / Grid
+🔹 [Week 8: CSS3 Advanced](./markdown/lecture8.md)
+- Flexbox / Grid ( covered in  web engineering week 6)
 - Responsive design basics
-- Animations & transitions
+- Animations & transitions  
 💡 Lab: Responsive webpage
+
 
 🔹 Week 9: XML & Related Technologies
 - XML basics
