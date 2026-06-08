@@ -53,7 +53,7 @@
 💡 Lab: Responsive webpage
 
 
-🔹 Week 9: XML & Related Technologies
+🔹 [Week 9: XML & Related Technologies](markdown/lecture9.md)
 - XML basics
 - XHTML, XML structure
 - XML vs HTML
