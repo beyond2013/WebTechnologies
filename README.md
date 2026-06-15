@@ -58,7 +58,7 @@
 - XHTML, XML structure
 - XML vs HTML
 
-🔹 Week 10: XML Applications
+🔹 [Week 10: XML Applications](markdown/lecture10.md)
 - XSL, XSLT basics
 - XML Query Language (XPath/XQuery concept)
 - Data representation
