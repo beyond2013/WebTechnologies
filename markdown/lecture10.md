@@ -278,6 +278,175 @@ Program:
 </body>
 </html>
 ```
+# Practical Usage of XML and XSLT
+
+## File Extensions
+
+Different XML technologies are usually stored in separate files.
+
+| Technology | Common Extension |
+|------------|------------------|
+| XML Document | .xml |
+| XSLT Stylesheet | .xsl or .xslt |
+| XHTML Document | .xhtml |
+| HTML Document | .html |
+
+Example:
+
+student.xml
+student.xsl
+
+Both .xsl and .xslt are accepted, but .xsl is more commonly used in introductory examples and textbooks.
+
+---
+
+## Project Structure
+
+A simple project may look like:
+
+project/
+
+├── student.xml
+
+├── student.xsl
+
+└── output.html
+
+Where:
+
+- student.xml contains the data.
+- student.xsl contains the transformation rules.
+- output.html is the transformed result.
+
+---
+
+## Linking an XML File to an XSLT File
+
+The XML document must reference the XSLT stylesheet using a processing instruction.
+
+Example:
+
+```xml
+<?xml version="1.0"?>
+
+<?xml-stylesheet
+    type="text/xsl"
+    href="student.xsl"?>
+
+<student>
+    <name>Ali Ahmed</name>
+    <program>BSCS</program>
+</student>
+```
+
+The href attribute specifies the location of the stylesheet.
+
+---
+
+## When XML and XSL Files Are in the Same Folder
+
+Directory:
+
+project/
+
+├── student.xml
+
+└── student.xsl
+
+Reference:
+
+```xml
+<?xml-stylesheet
+    type="text/xsl"
+    href="student.xsl"?>
+```
+
+---
+
+## When the XSL File Is in a Different Folder
+
+Directory:
+
+project/
+
+├── student.xml
+
+└── styles/
+
+    └── student.xsl
+
+Reference:
+
+```xml
+<?xml-stylesheet
+    type="text/xsl"
+    href="styles/student.xsl"?>
+```
+
+---
+
+## Complete Example
+
+### student.xml
+
+```xml
+<?xml version="1.0"?>
+
+<?xml-stylesheet
+    type="text/xsl"
+    href="student.xsl"?>
+
+<student>
+    <name>Ali Ahmed</name>
+    <program>BSCS</program>
+</student>
+```
+
+### student.xsl
+
+```xml
+<?xml version="1.0"?>
+
+<xsl:stylesheet
+    version="1.0"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="/">
+
+<html>
+<body>
+
+<h2>Student Information</h2>
+
+<p>
+Name:
+<xsl:value-of select="student/name"/>
+</p>
+
+<p>
+Program:
+<xsl:value-of select="student/program"/>
+</p>
+
+</body>
+</html>
+
+</xsl:template>
+
+</xsl:stylesheet>
+```
+
+---
+
+## Running the Example
+
+1. Save the XML code as student.xml.
+2. Save the XSLT code as student.xsl.
+3. Place both files in the same folder.
+4. Open student.xml in a browser that supports XSLT processing.
+5. The browser applies the transformation and displays the generated HTML output.
+
+Note: Modern browsers have reduced support for some XML/XSLT features due to security restrictions. For classroom demonstrations, editors such as Visual Studio Code with XML extensions, online XSLT processors, or dedicated XML tools often provide more consistent results.
 
 The XML data is transformed into an HTML page.
 
