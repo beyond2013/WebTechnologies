@@ -41,7 +41,7 @@
 - Semantic + accessibility basics  
 💡 Lab: Build a multi-section webpage
 
-🔹 Week 7: CSS3 Fundamentals (covered in web engineering week 5)
+🔹 Week 7: CSS3 Fundamentals (covered in [web engineering week 5](https://github.com/beyond2013/WebEngineering/blob/main/markdown/lecture5.md))
 - Selectors, box model
 - Colors, fonts, layout basics  
 💡 Lab: Style previous HTML page
