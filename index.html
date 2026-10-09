@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CSS Box Model Playground</title>
+<style>
+:root{--bg:#f3f5f7;--panel:#fff;--ink:#1b2430;--mute:#5d6b7a;--line:#d5dce3;
+--margin:#f4b183;--border:#f2d06b;--padding:#9fd49a;--content:#8fb8e8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12171d;--panel:#1b232c;--ink:#e6ecf2;--mute:#9aa8b6;--line:#2c3844;
+--margin:#a8693a;--border:#a88a22;--padding:#4a8a48;--content:#3f6ea5}}
+:root[data-theme="dark"]{--bg:#12171d;--panel:#1b232c;--ink:#e6ecf2;--mute:#9aa8b6;--line:#2c3844;--margin:#a8693a;--border:#a88a22;--padding:#4a8a48;--content:#3f6ea5}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Trebuchet MS","Segoe UI",system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:16px;display:grid;gap:16px}
+h1{font-size:1.4rem;margin:0}
+p.lead{margin:4px 0 0;color:var(--mute)}
+.grid{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:800px){.grid{grid-template-columns:300px 1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+fieldset{border:0;margin:0 0 12px;padding:0}
+legend{font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.row{display:grid;grid-template-columns:62px 1fr 48px;gap:8px;align-items:center;font-size:.9rem}
+.row span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%}
+select,button{font:inherit;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+button{cursor:pointer}
+:focus-visible{outline:3px solid #3b82f6;outline-offset:2px}
+.stage{overflow:auto;background:repeating-conic-gradient(var(--line) 0 25%,transparent 0 50%) 0 0/16px 16px;border-radius:8px;min-height:340px;padding:12px;display:flex;align-items:center;justify-content:center}
+#diagram{display:inline-block;background:var(--margin);padding:var(--ml-pad,0)}
+.layer{display:block}
+#mBox{background:var(--margin);position:relative}
+#bBox{background:var(--border)}
+#pBox{background:var(--padding)}
+#cBox{background:var(--content);color:#0d1b2a;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:.85rem}
+.guides #mBox,.guides #bBox,.guides #pBox,.guides #cBox{outline:2px dashed var(--g);outline-offset:-2px}
+.guides #mBox{--g:#c2410c}.guides #bBox{--g:#a16207}.guides #pBox{--g:#15803d}.guides #cBox{--g:#1d4ed8}
+.guides.hl-margin #mBox,.guides.hl-border #bBox,.guides.hl-padding #pBox,.guides.hl-content #cBox{outline-style:solid;outline-width:3px}
+fieldset{border-radius:8px;transition:background .15s}
+fieldset:hover,fieldset:focus-within{background:rgba(127,127,127,.12)}
+.lbl{position:absolute;font-size:.7rem;font-weight:700;color:#0d1b2a;pointer-events:none}
+pre{margin:0;background:#0f1720;color:#d6e2ee;padding:12px;border-radius:8px;overflow-x:auto;font:13px/1.5 ui-monospace,Consolas,monospace}
+.note{font-size:.88rem;color:var(--mute);margin:8px 0 0}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;align-items:center}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>CSS box model playground</h1>
+    <p class="lead">Drag the sliders. The element below is a real box styled with your values, and the code updates to match.</p>
+  </header>
+
+  <div class="grid">
+    <section class="panel" aria-label="Controls" id="controls"></section>
+
+    <section style="display:grid;gap:16px;min-width:0">
+      <div class="panel">
+        <div class="stage guides" id="stage"><div id="mBox"><div id="bBox"><div id="pBox"><div id="cBox"></div></div></div></div></div>
+        <p class="note" id="sizeNote"></p>
+      </div>
+      <div class="panel">
+        <div class="bar">
+          <label>box-sizing
+            <select id="bs"><option>content-box</option><option>border-box</option></select>
+          </label>
+          <label><input type="checkbox" id="linked"> Link all sides</label>
+          <label><input type="checkbox" id="guideToggle" checked> Dashed guides</label>
+          <button id="reset" type="button">Reset</button>
+          <button id="copy" type="button">Copy CSS</button>
+        </div>
+        <pre id="code" aria-live="polite"></pre>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+(function(){
+  var layers=[
+    {k:'margin',name:'Margin',color:'--margin',max:80,def:24},
+    {k:'border',name:'Border',color:'--border',max:30,def:6},
+    {k:'padding',name:'Padding',color:'--padding',max:80,def:20}
+  ];
+  var sides=['top','right','bottom','left'];
+  var state={}, size={width:200,height:100};
+  var box={margin:document.getElementById('mBox'),border:document.getElementById('bBox'),padding:document.getElementById('pBox')};
+  var content=document.getElementById('cBox');
+  var controls=document.getElementById('controls');
+  var inputs={};
+
+  function reset(){
+    layers.forEach(function(l){state[l.k]={top:l.def,right:l.def,bottom:l.def,left:l.def}});
+    size={width:200,height:100};
+    document.getElementById('bs').value='content-box';
+  }
+  reset();
+
+  function row(id,label,min,max,val){
+    var r=document.createElement('div');r.className='row';
+    var lab=document.createElement('label');lab.htmlFor=id;lab.textContent=label;
+    var inp=document.createElement('input');inp.type='range';inp.id=id;inp.min=min;inp.max=max;inp.value=val;
+    var out=document.createElement('span');out.textContent=val+'px';
+    r.appendChild(lab);r.appendChild(inp);r.appendChild(out);
+    return {row:r,inp:inp,out:out};
+  }
+
+  layers.forEach(function(l){
+    var fs=document.createElement('fieldset');
+    var lg=document.createElement('legend');
+    lg.innerHTML='<span class="sw" style="background:var('+l.color+')"></span>'+l.name;
+    fs.appendChild(lg);
+    sides.forEach(function(s){
+      var r=row(l.k+'-'+s,s,0,l.max,state[l.k][s]);
+      inputs[l.k+'-'+s]=r;
+      r.inp.addEventListener('input',function(){
+        var v=+r.inp.value;
+        if(document.getElementById('linked').checked){sides.forEach(function(t){state[l.k][t]=v})}
+        else state[l.k][s]=v;
+        render();
+      });
+      fs.appendChild(r.row);
+    });
+    fs.dataset.layer=l.k;
+    controls.appendChild(fs);
+  });
+
+  var fs=document.createElement('fieldset');
+  var lg=document.createElement('legend');
+  lg.innerHTML='<span class="sw" style="background:var(--content)"></span>Content';
+  fs.appendChild(lg);
+  ['width','height'].forEach(function(d){
+    var r=row('c-'+d,d,20,d==='width'?360:240,size[d]);
+    inputs['c-'+d]=r;
+    r.inp.addEventListener('input',function(){size[d]=+r.inp.value;render()});
+    fs.appendChild(r.row);
+  });
+  fs.dataset.layer='content';
+  controls.appendChild(fs);
+
+  function px(o){return sides.map(function(s){return o[s]+'px'}).join(' ')}
+  function short(o){
+    var t=o.top,r=o.right,b=o.bottom,l=o.left;
+    if(t===r&&r===b&&b===l)return t+'px';
+    if(t===b&&r===l)return t+'px '+r+'px';
+    return px(o);
+  }
+
+  function render(){
+    var bs=document.getElementById('bs').value;
+    var m=state.margin,b=state.border,p=state.padding;
+    // outer wrapper shows margin as coloured space
+    box.margin.style.padding=px(m);
+    box.border.style.padding=px(b);
+    box.padding.style.padding=px(p);
+    // content box size: when border-box, width includes padding+border
+    var w=size.width,h=size.height;
+    if(bs==='border-box'){
+      w=Math.max(0,size.width-p.left-p.right-b.left-b.right);
+      h=Math.max(0,size.height-p.top-p.bottom-b.top-b.bottom);
+    }
+    content.style.width=w+'px';content.style.height=h+'px';
+    content.textContent=w+' × '+h;
+    // sync UI
+    layers.forEach(function(l){sides.forEach(function(s){
+      var r=inputs[l.k+'-'+s];r.inp.value=state[l.k][s];r.out.textContent=state[l.k][s]+'px';
+    })});
+    inputs['c-width'].out.textContent=size.width+'px';
+    inputs['c-height'].out.textContent=size.height+'px';
+    var tw=size.width+(bs==='border-box'?0:p.left+p.right+b.left+b.right);
+    var th=size.height+(bs==='border-box'?0:p.top+p.bottom+b.top+b.bottom);
+    var fw=tw+m.left+m.right, fh=th+m.top+m.bottom;
+    document.getElementById('sizeNote').textContent=
+      'Border box: '+tw+' × '+th+'px. Space it takes in the layout (with margin): '+fw+' × '+fh+'px.'+
+      (bs==='border-box'?' With border-box, width and height already include padding and border.':' With content-box, padding and border are added on top of width and height.');
+    document.getElementById('code').textContent=
+      '.box {\n  box-sizing: '+bs+';\n  width: '+size.width+'px;\n  height: '+size.height+'px;\n  padding: '+short(p)+';\n  border: '+short(b)+' solid;\n  margin: '+short(m)+';\n}';
+  }
+
+  document.getElementById('bs').addEventListener('change',render);
+  document.getElementById('linked').addEventListener('change',function(){
+    if(this.checked){layers.forEach(function(l){var v=state[l.k].top;sides.forEach(function(s){state[l.k][s]=v})});render()}
+  });
+  document.getElementById('reset').addEventListener('click',function(){reset();render()});
+  document.getElementById('copy').addEventListener('click',function(){
+    var t=document.getElementById('code').textContent,btn=this;
+    try{navigator.clipboard.writeText(t).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy CSS'},1200)})}catch(e){}
+  });
+  var stage=document.getElementById('stage');
+  document.getElementById('guideToggle').addEventListener('change',function(){stage.classList.toggle('guides',this.checked)});
+  function hl(layer){['margin','border','padding','content'].forEach(function(k){stage.classList.remove('hl-'+k)});if(layer)stage.classList.add('hl-'+layer)}
+  controls.querySelectorAll('fieldset').forEach(function(f){
+    f.addEventListener('mouseenter',function(){hl(f.dataset.layer)});
+    f.addEventListener('mouseleave',function(){hl(null)});
+    f.addEventListener('focusin',function(){hl(f.dataset.layer)});
+    f.addEventListener('focusout',function(){hl(null)});
+  });
+  render();
+})();
+</script>
+</body>
+</html>
