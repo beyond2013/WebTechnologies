@@ -137,37 +137,30 @@ It sends a SOAP message to the banking server.
 
 A simplified SOAP request looks like this:
 
+```
 <?xml version="1.0"?>
-
-<soap:Envelope
-    xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
-
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
     <soap:Body>
-
         <GetAccountBalance>
             <AccountNumber>123456</AccountNumber>
         </GetAccountBalance>
-
     </soap:Body>
-
 </soap:Envelope>
+```
 
 The server processes the request and returns another SOAP message.
 
 Simplified response:
 
-<soap:Envelope
-    xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
-
+```
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
     <soap:Body>
-
         <GetAccountBalanceResponse>
             <Balance>50000</Balance>
         </GetAccountBalanceResponse>
-
     </soap:Body>
-
 </soap:Envelope>
+```
 
 Notice that SOAP messages have a defined XML structure.
 
