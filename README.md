@@ -63,7 +63,7 @@
 - XML Query Language (XPath/XQuery concept)
 - Data representation
 
-🔹 Week 11: Web Services (Core)
+🔹 [Week 11: Web Services (Core)](markdown/week10.md)
 - SOAP vs REST
 - WSDL (conceptual)
 - API basics
